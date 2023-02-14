@@ -43,7 +43,7 @@ docker logs <container-id>
 6. Test your container
 
 ```
-curl https://localhost:8337
+curl http://localhost:8337
 ```
 
 # Challenage
