@@ -4,7 +4,7 @@ Pipeline{
 
     stages{
         stage ('Git Checkout) {
-
+                git status
 
         }
 
