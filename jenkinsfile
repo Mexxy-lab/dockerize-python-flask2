@@ -1,14 +1,10 @@
 Pipeline{
-
     agent any
-
     stages{
         stage ('Git Checkout) {
-                git status
-
+            steps {
+                git branch: 'pumejbranch', credentialsId: 'git_credentials', url: 'https://github.com/Mexxy-lab/dockerize-python-flask2.git'
+            }
         }
-
     }
-
-
 }
