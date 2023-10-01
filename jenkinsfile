@@ -12,8 +12,9 @@ pipeline{
         }
         stage ('Build image') {
             steps {
-                // build image
-                def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1")
+                script {
+                    def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1")
+                }
             }
         }
         stage('Push to AWS ECR') {
