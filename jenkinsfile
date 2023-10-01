@@ -10,13 +10,6 @@ pipeline{
                 git branch: 'pumejbranch', credentialsId: 'git_credentials', url: 'https://github.com/Mexxy-lab/dockerize-python-flask2.git'
             }
         }
-        //stage ('Docker Build') {
-            //steps {
-                //script {
-                    //dockerImage = docker.build registry
-                }
-            }
-        }
         stage('Push to ECR') {
             steps {
                script{
