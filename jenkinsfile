@@ -28,6 +28,7 @@ pipeline{
 
                    // push image
                     myImage.push()
+                   }
                }
             }
         }
