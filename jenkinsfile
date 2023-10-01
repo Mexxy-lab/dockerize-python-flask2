@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
         registry = "598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo"
-        AWS_ECR_PASSWORD=$(aws ecr get-login-password --region ap-south-1)
+        //AWS_ECR_PASSWORD=$(aws ecr get-login-password --region ap-south-1)
     }
     stages{
         stage ('Git Checkout') {
@@ -17,10 +17,20 @@ pipeline{
                 }
             }
         }
+        stage ('Authenticate with AWS ECR') {
+           steps {
+              script {
+                 // Run the AWS CLI command to get the ECR login password
+                 def awsEcrPassword = sh(script: 'aws ecr get-login-password --region ap-south-1', returnStdout: true).trim()
+
+                 // Log in to ECR using the retrieved password
+                 sh "docker login --username AWS --password-stdin 598189530267.dkr.ecr.ap-south-1.amazonaws.com <<< '${awsEcrPassword}'"
+              }
+           }
+        }
         stage ('Docker Push to AWS Repo') {
             steps {
                 script {
-                    sh 'docker login --username AWS --password-stdin 598189530267.dkr.ecr.ap-south-1.amazonaws.com <<< "$AWS_ECR_PASSWORD"'
                     sh 'docker push 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.0'
                 }
             }
