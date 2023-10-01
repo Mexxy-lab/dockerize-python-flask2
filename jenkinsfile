@@ -20,11 +20,14 @@ pipeline{
         stage ('Authenticate with AWS ECR') {
            steps {
               script {
+                    withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+
                  // Run the AWS CLI command to get the ECR login password
                  def awsEcrPassword = bat(script: 'aws ecr get-login-password --region ap-south-1', returnStdout: true).trim()
 
                  // Log in to ECR using the retrieved password
                  bat "docker login --username AWS --password-stdin 598189530267.dkr.ecr.ap-south-1.amazonaws.com <<< '${awsEcrPassword}'"
+                 }
               }
            }
         }
