@@ -19,8 +19,8 @@ pipeline{
         stage ('Docker Push to AWS Repo') {
             steps {
                 script {
-                    bat 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 598189530267.dkr.ecr.ap-south-1.amazonaws.com'
-                    bat 'docker push 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.0'
+                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 598189530267.dkr.ecr.ap-south-1.amazonaws.com'
+                    sh 'docker push 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.0'
                 }
             }
         }
