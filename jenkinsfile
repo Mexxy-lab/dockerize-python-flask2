@@ -20,7 +20,7 @@ pipeline{
         stage ('Authenticate with AWS ECR') {
            steps {
               script {
-                    withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+                    withCredentials(<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>) {
 
                  // Run the AWS CLI command to get the ECR login password
                  def awsEcrPassword = bat(script: 'aws ecr get-login-password --region ap-south-1', returnStdout: true).trim()
