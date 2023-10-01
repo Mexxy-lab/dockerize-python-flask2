@@ -23,10 +23,10 @@ pipeline{
                    //https://AwsAccountNumber.dkr.ecr.region.amazonaws.com/rekeyole-app', 'ecr:region:credentialsId
                    docker.withRegistry('https://598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo', 'ecr:ap-south-1:aws_ecr_repo') {
 
-                   // build image
+                   // Tagging image
                    def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1")
 
-                   // push image
+                   // pushing image
                    myImage.push()
                    }
                }
