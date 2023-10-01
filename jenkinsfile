@@ -10,10 +10,10 @@ pipeline{
                 git branch: 'pumejbranch', credentialsId: 'git_credentials', url: 'https://github.com/Mexxy-lab/dockerize-python-flask2.git'
             }
         }
-        stage ('Docker Build') {
-            steps {
-                script {
-                    dockerImage = docker.build registry
+        //stage ('Docker Build') {
+            //steps {
+                //script {
+                    //dockerImage = docker.build registry
                 }
             }
         }
@@ -24,17 +24,12 @@ pipeline{
                    docker.withRegistry('https://598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo', 'ecr:ap-south-1:aws_ecr_repo') {
 
                    // build image
-                   //def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.0")
+                   def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.0")
 
                    // push image
-                   //myImage.push()
+                   myImage.push()
                    }
                }
-            }
-        }
-        stage ('Push Image to ECR') {
-            steps {
-                docker push $(registry):pythonflask1.0.0
             }
         }
     }
