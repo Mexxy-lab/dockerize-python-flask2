@@ -1,9 +1,19 @@
 pipeline{
     agent any
+    environment {
+        registry = "598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo"
+    }
     stages{
         stage ('Git Checkout') {
             steps {
                 git branch: 'pumejbranch', credentialsId: 'git_credentials', url: 'https://github.com/Mexxy-lab/dockerize-python-flask2.git'
+            }
+        }
+        stage ('Docker Build') {
+            steps {
+                script {
+                    dockerImage = docker.build registry
+                }
             }
         }
     }
