@@ -10,14 +10,20 @@ pipeline{
                 git branch: 'pumejbranch', credentialsId: 'git_credentials', url: 'https://github.com/Mexxy-lab/dockerize-python-flask2.git'
             }
         }
-        stage('Push to ECR') {
+        stage ('Build image') {
+            steps {
+                // build image
+                def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1")
+            }
+        }
+        stage('Push to AWS ECR') {
             steps {
                script{
                    //https://AwsAccountNumber.dkr.ecr.region.amazonaws.com/rekeyole-app', 'ecr:region:credentialsId
                    docker.withRegistry('https://598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo', 'ecr:ap-south-1:aws_ecr_repo') {
 
                    // build image
-                   def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.0")
+                   //def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1")
 
                    // push image
                    myImage.push()
