@@ -35,8 +35,8 @@ pipeline{
         stage ('Stopping Previous containers') {
             steps {
                 script {
-                    bat 'docker ps -f name=mypythonContainer -q | xargs --no-run-if-empty docker container stop'
-                    bat 'docker container ls -a -f name=mypythonContainer -q | xargs -r docker container rm'
+                    bat 'docker ps -f name=mypythonContainer -q | --no-run-if-empty docker container stop'
+                    bat 'docker container ls -a -f name=mypythonContainer -q | -r docker container rm'
                 }
             }
         }
