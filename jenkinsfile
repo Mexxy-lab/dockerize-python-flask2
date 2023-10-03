@@ -36,15 +36,15 @@ pipeline{
         stage ('Stopping Previous containers') {
             steps {
                 script {
-                    sh 'docker ps -f name=mypythonContainer -q | xargs --no-run-if-empty docker container stop'
-                    sh 'docker container ls -a -f name=mypythonContainer -q | xargs -r docker container rm'
+                    sh 'docker ps -f name=mypythoncontainer -q | xargs --no-run-if-empty docker container stop'
+                    sh 'docker container ls -a -f name=mypythoncontainer -q | xargs -r docker container rm'
                 }
             }
         }
         stage ('Docker run for Container creation') {
             steps {
                script {
-                   sh 'docker run -d -p 8338:3000 --rm name=mypythonContainer 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1'
+                   sh 'docker run -d -p 8338:3000 --rm name=mypythoncontainer 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1'
                }
             }
         }
