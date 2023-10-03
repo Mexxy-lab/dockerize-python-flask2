@@ -13,7 +13,7 @@ pipeline{
         stage ('Build image') {
             steps {
                 script {
-                    def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask1.0.0")
+                    sh 'docker build -t 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask2.0.0'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline{
                    docker.withRegistry('https://598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo', 'ecr:ap-south-1:aws_ecr_repo') {
 
                    // Tagging image
-                   def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask1.0.0")
+                   def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask2.0.0")
 
                    // pushing image upload....
                    myImage.push()
