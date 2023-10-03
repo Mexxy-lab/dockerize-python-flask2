@@ -24,7 +24,7 @@ pipeline{
                    docker.withRegistry('https://598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo', 'ecr:ap-south-1:aws_ecr_repo') {
 
                    // Tagging image
-                   def myImage = docker.build("$(registry)/pumejrepo:myflask2.0.1")
+                   def myImage = docker.build("598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask2.0.1")
 
                    // pushing image upload....
                    myImage.push()
@@ -44,7 +44,7 @@ pipeline{
         stage ('Docker run for Container creation') {
             steps {
                script {
-                   sh 'docker run -d -p 8338:3000 --name mypythoncontainer 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask2.0.0'
+                   sh 'docker run -d -p 8338:3000 --name mypythoncontainer 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask2.0.1'
                }
             }
         }
