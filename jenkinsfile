@@ -44,7 +44,7 @@ pipeline{
         stage ('Docker run for Container creation') {
             steps {
                script {
-                   sh 'docker run -d -p 8338:3000 --name mypythoncontainer 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:pythonflask1.0.1'
+                   sh 'docker run -d -p 8338:3000 --name mypythoncontainer 598189530267.dkr.ecr.ap-south-1.amazonaws.com/pumejrepo:myflask1.0.0'
                }
             }
         }
